@@ -14,6 +14,8 @@ public class Course {
         this.enrolledCount = 0;
     }
 
+
+
     // Getters
     public String getCourseCode() {
         return courseCode;
@@ -30,6 +32,9 @@ public class Course {
         return enrolledCount;
     }
 
+
+
+
     // Increment enrollment
     public void incrementEnrollment(){
         if (enrolledCount < maxCapacity){
@@ -44,6 +49,5 @@ public class Course {
     public static int getTotalEnrolled() {
         return totalEnrolled;
     }
-
-
 }
+

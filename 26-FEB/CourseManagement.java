@@ -18,20 +18,23 @@ public class CourseManagement {
         student.assignGrade(course, grade);
     }
 
-    // Calculate overall grade for student
     public static double calculateOverallGrade(Student student) {
         return student.calculateOverallGrade();
     }
 
-    // List all courses
     public static void listCourses() {
         for (Course c : courses) {
-            System.out.println(c.getCourseCode() + " - " + c.getName() + " (" + c.getEnrolledCount() + "/" + c.getMaxCapacity() + ")");
+            System.out.println(c.getCourseCode() + " - " + c.getName() + " (" + c.getEnrolledCount() + "/"
+                    + c.getMaxCapacity() + ")");
         }
     }
+
+
 
     // Getter for courses list so other classes can access
     public static ArrayList<Course> getCourses() {
         return courses;
     }
 }
+
+

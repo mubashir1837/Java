@@ -6,8 +6,9 @@ public class Student {
     private String name;
     private String id;
     private ArrayList<Course> enrolledCourses;
-    private HashMap<String, Double> courseGrades; // Course code -> Grade
+    private HashMap<String, Double> courseGrades;
 
+    
     // Constructor
     public Student(String name, String id) {
         this.name = name;
@@ -16,6 +17,7 @@ public class Student {
         this.courseGrades = new HashMap<>();
     }
 
+    
     // Getter and Setter methods
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
@@ -24,7 +26,7 @@ public class Student {
     public void setId(String id) { this.id = id; }
 
     public ArrayList<Course> getEnrolledCourses() { return enrolledCourses; }
-
+    
     // Enroll in a course
     public void enrollCourse(Course course) {
         if (!enrolledCourses.contains(course)) {
