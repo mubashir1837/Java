@@ -63,7 +63,7 @@ private void createContentArea() {
 The `MainFrame` class serves as the primary window for the Student Management System GUI application. It extends `JFrame` and manages the overall layout and navigation between different functional panels using a `CardLayout`.
 
 #### Key Components and Initialization:
-- **Fields**: 
+- **Fields**:
   - `cardLayout` and `contentPanel`: Handle switching between panels (Dashboard, Students, Courses, Enrollment, Grades).
   - `statusLabel` and `statsLabel`: Display status messages and statistics at the bottom.
   - Constants like `DASHBOARD_PANEL`, etc.: String identifiers for each panel in the CardLayout.
@@ -86,11 +86,190 @@ a cohesive visual style.
 > - Use of titled borders, split panes, and grid layouts to logically organize
 information.
 
-*(Insert screenshot of the main frame here)*
+---
+
+## 3. Model Classes
+
+### Student Class
+
+The `Student` class represents a student in the system with personal information and enrollment data.
+
+```java
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Student class representing a student in the management system.
+ * Contains student personal information and enrolled courses.
+ */
+public class Student {
+    private String studentId;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private String phone;
+    private String address;
+    private String dateOfBirth;
+    private String major;
+    private List<String> enrolledCourses;
+
+    // Constructor, getters, setters, and methods...
+}
+```
+
+### Course Class
+
+The `Course` class represents a course offering with enrollment management.
+
+```java
+package model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Course class representing a course in the management system.
+ * Contains course information and enrolled students.
+ */
+public class Course {
+    private String courseId;
+    private String courseName;
+    private String courseCode;
+    private String description;
+    private String department;
+    private int credits;
+    private String instructor;
+    private int maxCapacity;
+    private List<String> enrolledStudents;
+
+    // Constructor, getters, setters, and methods...
+}
+```
+
+### Grade Class
+
+The `Grade` class represents a student's grade in a specific course with weighted scoring.
+
+```java
+package model;
+
+/**
+ * Grade class representing a student's grade in a course.
+ * Links students, courses, and their academic performance.
+ */
+public class Grade {
+    private String gradeId;
+    private String studentId;
+    private String courseId;
+    private double assignmentScore;
+    private double midtermScore;
+    private double finalScore;
+    private double totalScore;
+    private String letterGrade;
+    private String semester;
+    private String academicYear;
+    private String comments;
+
+    // Constructor, getters, setters, and methods...
+}
+```
 
 ---
 
-## 3. Student Management Functionality
+## 4. Data Management
+
+### DataManager Class
+
+The `DataManager` is a singleton class that handles all data operations and persistence.
+
+```java
+package data;
+
+import model.Student;
+import model.Course;
+import model.Grade;
+
+import java.util.*;
+
+public class DataManager {
+    private static DataManager instance;
+
+    // Data storage
+    private Map<String, Student> students;
+    private Map<String, Course> courses;
+    private Map<String, Grade> grades;
+
+    // ID counters for generating unique IDs
+    private int studentIdCounter;
+    private int courseIdCounter;
+    private int gradeIdCounter;
+
+    // Singleton pattern implementation...
+}
+```
+
+Key methods include:
+- Student management: `addStudent()`, `updateStudent()`, `deleteStudent()`
+- Course management: `addCourse()`, `updateCourse()`, `deleteCourse()`
+- Enrollment: `enrollStudentInCourse()`, `removeStudentFromCourse()`
+- Grades: `updateGrade()`, `getStudentGrades()`, `calculateGPA()`
+
+---
+
+## 5. Utility Classes
+
+### Validator Class
+
+The `Validator` class provides static methods for input validation.
+
+```java
+package util;
+
+import java.util.regex.Pattern;
+
+/**
+ * Validator class providing static methods for input validation.
+ * Ensures data integrity before operations are performed.
+ */
+public class Validator {
+
+    // Email validation pattern
+    private static final Pattern EMAIL_PATTERN =
+        Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
+
+    // Phone validation pattern
+    private static final Pattern PHONE_PATTERN =
+        Pattern.compile("^[0-9]{7}$|^[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$|^[0-9]{10}$|^\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$");
+
+    // Date pattern (YYYY-MM-DD)
+    private static final Pattern DATE_PATTERN =
+        Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$");
+
+    // Validation methods...
+}
+```
+
+### ValidationException Class
+
+Custom exception for validation errors.
+
+```java
+package util;
+
+/**
+ * Custom exception class for validation errors in the Student Management System.
+ * Used to provide meaningful error messages for invalid inputs.
+ */
+public class ValidationException extends Exception {
+    // Constructor implementations...
+}
+```
+
+---
+
+## 6. Student Management Functionality
 
 Panel: `gui.StudentManagementPanel`
 
@@ -113,11 +292,9 @@ studentsTable.getSelectionModel().addListSelectionListener(
 These handlers ensure that clicking the buttons invokes the correct methods and
 that the form fields synchronize with the selected table row.
 
-*(Insert screenshot of student panel)*
-
 ---
 
-## 4. Course Enrollment Functionality
+## 7. Course Enrollment Functionality
 
 Panel: `gui.CourseEnrollmentPanel`
 
@@ -153,11 +330,9 @@ private void enrollStudent() {
 The panel updates dynamically after each operation by reloading table models and
 updating the status bar.
 
-*(Insert screenshot of enrollment panel)*
-
 ---
 
-## 5. Grade Management Functionality
+## 8. Grade Management Functionality
 
 Panel: `gui.GradeManagementPanel`
 
@@ -189,11 +364,9 @@ gradesTable.setFont(new Font("Segoe UI", Font.PLAIN, 12));
 
 Event listeners ensure responses to table selection and slider changes.
 
-*(Insert screenshot of grade panel)*
-
 ---
 
-## 6. Dynamic Interface Updates
+## 9. Dynamic Interface Updates
 
 All panels use `refresh...()` methods after data changes to keep the GUI in sync
 with the underlying model. For example, enrolling a student triggers:
@@ -208,7 +381,7 @@ bar message updates.
 
 ---
 
-## 7. Error Handling
+## 10. Error Handling
 
 - Validation performed by `util.Validator` throws `ValidationException` with
   clear messages.
@@ -233,15 +406,45 @@ This keeps the application responsive and user-friendly in error scenarios.
 
 ## Running the Student Management System
 
-1. Open a command prompt in the project root directory.
-2. Compile the code: `compile.bat` (Windows) or `sh build.sh` (Unix).
-3. Execute the application: `run.bat` or `java -cp bin gui.MainFrame`.
+### Prerequisites
+- Java Development Kit (JDK) 8 or higher installed
+- Windows operating system (or modify scripts for other OS)
 
-*(Screenshots of terminal commands and the running app can be added here)*
+### Compilation (Windows)
+1. Open Command Prompt in the project root directory.
+2. Run the build script:
+   ```
+   compile.bat
+   ```
+   This compiles all Java source files and places the class files in the `bin` directory.
+
+### Execution (Windows)
+1. After successful compilation, run:
+   ```
+   run.bat
+   ```
+   Or manually:
+   ```
+   cd bin
+   java gui.MainFrame
+   ```
+
+### Compilation (Unix/Linux/Mac)
+1. Open terminal in the project root directory.
+2. Compile manually:
+   ```
+   mkdir -p bin
+   javac -d bin src/model/*.java src/util/*.java src/data/*.java src/gui/*.java
+   ```
+
+### Execution (Unix/Linux/Mac)
+```
+java -cp bin gui.MainFrame
+```
 
 ---
 
-## 9. Design Rationale
+## 11. Design Rationale
 
 - **Swing** was chosen for its simplicity and built-in availability.
 - **CardLayout** provides easy switching between functional areas.
@@ -251,7 +454,38 @@ This keeps the application responsive and user-friendly in error scenarios.
 
 ---
 
-## 10. Conclusion
+## 12. Project Structure
+
+```
+StudentManagementSystem/
+├── src/
+│   ├── model/
+│   │   ├── Student.java
+│   │   ├── Course.java
+│   │   └── Grade.java
+│   ├── data/
+│   │   └── DataManager.java
+│   ├── gui/
+│   │   ├── MainFrame.java
+│   │   ├── StudentManagementPanel.java
+│   │   ├── CourseEnrollmentPanel.java
+│   │   └── GradeManagementPanel.java
+│   └── util/
+│       ├── Validator.java
+│       └── ValidationException.java
+├── bin/ (generated)
+├── compile.bat
+├── run.bat
+├── build.sh
+├── run.sh
+├── README.md
+├── PROJECT_SUMMARY.md
+└── Documentation.md
+```
+
+---
+
+## 13. Conclusion
 
 This project satisfies all rubric criteria:
 
@@ -265,9 +499,6 @@ This project satisfies all rubric criteria:
 | Dynamic updates             | Automatic refresh after every data change         |
 | Error handling              | Exceptions caught, dialogs shown                   |
 | Documentation               | Comprehensive explanations and code snippets       |
-
-Attach this Markdown file along with compiled code and screenshots to your
-submission document (Word or PDF).
 
 ---
 

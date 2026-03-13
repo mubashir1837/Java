@@ -18,7 +18,8 @@ import java.awt.event.ActionListener;
 /**
  * StudentManagementPanel - Provides comprehensive functionality for managing student records.
  * Includes features to add, update, delete, and view student information.
- */
+*/
+
 public class StudentManagementPanel extends JPanel implements ActionListener {
     
     private MainFrame parentFrame;
@@ -102,9 +103,6 @@ public class StudentManagementPanel extends JPanel implements ActionListener {
         
         // Form fields
         studentIdField = createFormField();
-        // allow administrators to enter a custom ID; if left blank an ID will
-        // be generated when the student is added.  Previously this field was
-        // read-only which prevented any manual input.
         studentIdField.setEditable(true);
         studentIdField.setBackground(Color.WHITE);
         

@@ -57,7 +57,7 @@ public class MainFrame extends JFrame {
         
         // Set application icon (using default if custom not available)
         try {
-            setIconImage(new ImageIcon(getClass().getResource("/icon.png")).getImage());
+            setIconImage(new ImageIcon(getClass().getResource("/sms.jpg")).getImage());
         } catch (Exception e) {
             // Use default icon
         }

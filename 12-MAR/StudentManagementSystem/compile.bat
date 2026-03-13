@@ -56,6 +56,12 @@ if errorlevel 1 (
     pause
     exit /b 1
 ) else (
+    echo Copying resources...
+    cd ..
+    if exist "sms.jpg" (
+        copy sms.jpg bin\ >nul
+        echo Icon file copied to bin\
+    )
     echo.
     echo ========================================
     echo Build completed successfully!

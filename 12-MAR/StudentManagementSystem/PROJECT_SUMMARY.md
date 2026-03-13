@@ -10,8 +10,6 @@ This project is a comprehensive GUI application for managing student records, co
 
 ```
 StudentManagementSystem/
-├── README.md                          # Comprehensive documentation
-├── PROJECT_SUMMARY.md                 # This file - quick reference
 ├── build.sh                           # Unix/Linux build script
 ├── run.sh                             # Unix/Linux run script
 ├── compile.bat                        # Windows build script
