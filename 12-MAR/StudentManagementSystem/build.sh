@@ -49,6 +49,12 @@ javac -d ../bin \
 
 # Check if compilation was successful
 if [ $? -eq 0 ]; then
+    echo "Copying resources..."
+    cd ..
+    if [ -f "src/sms.jpg" ]; then
+        cp src/sms.jpg bin/
+        echo "Icon file copied to bin/"
+    fi
     echo ""
     echo "========================================"
     echo "Build completed successfully!"

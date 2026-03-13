@@ -1,9 +1,5 @@
 package util;
 
-/**
- * Custom exception class for validation errors in the Student Management System.
- * Used to provide meaningful error messages for invalid inputs.
- */
 public class ValidationException extends Exception {
     
     /**
@@ -12,7 +8,6 @@ public class ValidationException extends Exception {
     public ValidationException() {
         super();
     }
-    
     /**
      * Constructor with error message
      * @param message The error message
@@ -29,7 +24,6 @@ public class ValidationException extends Exception {
     public ValidationException(String message, Throwable cause) {
         super(message, cause);
     }
-    
     /**
      * Constructor with cause
      * @param cause The underlying cause
@@ -37,4 +31,5 @@ public class ValidationException extends Exception {
     public ValidationException(Throwable cause) {
         super(cause);
     }
+    
 }

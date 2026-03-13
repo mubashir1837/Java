@@ -2,21 +2,12 @@ package util;
 
 import java.util.regex.Pattern;
 
-/**
- * Validator class providing static methods for input validation.
- * Ensures data integrity before operations are performed.
- */
 public class Validator {
     
     // Email validation pattern
     private static final Pattern EMAIL_PATTERN = 
         Pattern.compile("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$");
     
-    // Phone validation pattern (accepts a few common formats)
-    // - 7 digit local: 555-0101 or 5550101
-    // - 10 digits: 5550101234
-    // - 10 digits with hyphens: 555-010-1234
-    // - area code in parentheses: (555) 010-1234
     private static final Pattern PHONE_PATTERN = 
         Pattern.compile("^[0-9]{7}$|^[0-9]{3}-[0-9]{4}$|^[0-9]{3}-[0-9]{3}-[0-9]{4}$|^[0-9]{10}$|^\\([0-9]{3}\\) [0-9]{3}-[0-9]{4}$");
     
@@ -41,6 +32,7 @@ public class Validator {
             throw new ValidationException(fieldName + " cannot be empty.");
         }
     }
+    
     
     /**
      * Validate email format

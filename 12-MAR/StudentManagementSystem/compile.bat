@@ -58,8 +58,8 @@ if errorlevel 1 (
 ) else (
     echo Copying resources...
     cd ..
-    if exist "sms.jpg" (
-        copy sms.jpg bin\ >nul
+    if exist "src\sms.jpg" (
+        copy src\sms.jpg bin\ >nul
         echo Icon file copied to bin\
     )
     echo.
