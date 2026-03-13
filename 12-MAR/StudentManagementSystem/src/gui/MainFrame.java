@@ -40,10 +40,6 @@ public class MainFrame extends JFrame {
         initializeFrame();
         createMenuBar();
         createToolBar();
-        // Status bar should be initialized before content panels because
-        // some panels call parentFrame.setStatusMessage() during their
-        // constructors (e.g. refreshTable). If statusLabel is null, a
-        // NullPointerException occurs. See build logs for details.
         createStatusBar();
         createContentArea();
         addEventListeners();

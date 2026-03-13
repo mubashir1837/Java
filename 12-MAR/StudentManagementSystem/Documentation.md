@@ -58,8 +58,27 @@ private void createContentArea() {
 }
 ```
 
-The dashboard displays statistic cards and action buttons created via
-`createStatCard` and `createActionButton` helpers.
+### MainFrame Class Explanation
+
+The `MainFrame` class serves as the primary window for the Student Management System GUI application. It extends `JFrame` and manages the overall layout and navigation between different functional panels using a `CardLayout`.
+
+#### Key Components and Initialization:
+- **Fields**: 
+  - `cardLayout` and `contentPanel`: Handle switching between panels (Dashboard, Students, Courses, Enrollment, Grades).
+  - `statusLabel` and `statsLabel`: Display status messages and statistics at the bottom.
+  - Constants like `DASHBOARD_PANEL`, etc.: String identifiers for each panel in the CardLayout.
+  - Panel references (`studentPanel`, `enrollmentPanel`, `gradePanel`): Allow updates to specific panels when data changes.
+
+- **Constructor**: Calls methods to set up the frame, menu bar, toolbar, status bar, content area, and event listeners.
+
+- **initializeFrame() Method**:
+  - Sets the window title to "Student Management System".
+  - Configures size (1200x800) with a minimum size (900x600) and centers it on the screen.
+  - Sets the default close operation to `DO_NOTHING_ON_CLOSE` (handled by a custom listener).
+  - Attempts to load a custom icon (`/icon.png`); falls back to default if unavailable.
+  - Applies the system's look and feel for native appearance, with fallback to default if it fails.
+
+This setup ensures a professional, user-friendly interface that adapts to the system's theme and provides a consistent navigation experience.
 
 > **Design choices:**
 > - Consistent `Segoe UI` font, light backgrounds, and color‑coded elements for
@@ -212,7 +231,7 @@ This keeps the application responsive and user-friendly in error scenarios.
 
 ---
 
-## 8. Running the Program
+## Running the Student Management System
 
 1. Open a command prompt in the project root directory.
 2. Compile the code: `compile.bat` (Windows) or `sh build.sh` (Unix).

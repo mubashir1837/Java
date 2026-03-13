@@ -6,11 +6,6 @@ import model.Grade;
 
 import java.util.*;
 
-/**
- * DataManager class - Singleton pattern implementation
- * Manages all data operations for students, courses, and grades.
- * Acts as an in-memory database for the application.
- */
 public class DataManager {
     private static DataManager instance;
     
@@ -50,14 +45,11 @@ public class DataManager {
         return instance;
     }
     
-    /**
-     * Reset the singleton instance (useful for testing)
-     */
+   
     public static synchronized void resetInstance() {
         instance = null;
     }
     
-    // ==================== Student Operations ====================
     
     /**
      * Generate a new unique student ID
@@ -176,7 +168,6 @@ public class DataManager {
         return eligible;
     }
     
-    // ==================== Course Operations ====================
     
     /**
      * Generate a new unique course ID
